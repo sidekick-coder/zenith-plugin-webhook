@@ -1,0 +1,12 @@
+{
+  "src/client/index.ts": [],
+  "src/client/pages/senders.vue": [
+    "/senders-BRxkbD9-.mjs"
+  ],
+  "src/client/pages/senders.vue?vue&type=script&setup=true&lang.ts": [
+    "/senders-BRxkbD9-.mjs"
+  ],
+  "src/shared/schemas/webhookSenderSchema.ts": [
+    "/senders-BRxkbD9-.mjs"
+  ]
+}

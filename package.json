@@ -1,0 +1,24 @@
+{
+    "name": "zenith-plugin-starter",
+    "version": "0.0.1",
+    "scripts": {
+        "start": "NODE_PRODUCTION=true zenith serve",
+        "dev": "zenith serve -w",
+        "build": "zenith plugin:build"
+    },
+    "imports": {
+        "#client/*": "./src/client/*",
+        "#server/*": "./src/server/*",
+        "#shared/*": "./src/shared/*"
+    },
+    "dependencies": {
+        "@sidekick-coder/zenith-kit": "^0.4.15",
+        "@vue/tsconfig": "^0.9.1",
+        "kysely": "^0.28.17",
+        "lodash-es": "^4.18.1"
+    },
+    "devDependencies": {
+        "@types/lodash-es": "^4.17.12",
+        "vite": "^7.3.7"
+    }
+}

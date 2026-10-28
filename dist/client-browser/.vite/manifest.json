@@ -1,0 +1,27 @@
+{
+  "_index-CjjI-3eN.mjs": {
+    "file": "index-CjjI-3eN.mjs",
+    "name": "index",
+    "dynamicImports": [
+      "src/client/pages/senders.vue"
+    ]
+  },
+  "src/client/index.ts": {
+    "file": "zenith-plugin-starter.mjs",
+    "name": "index",
+    "src": "src/client/index.ts",
+    "isEntry": true,
+    "imports": [
+      "_index-CjjI-3eN.mjs"
+    ]
+  },
+  "src/client/pages/senders.vue": {
+    "file": "senders-7ndxnUJo.mjs",
+    "name": "senders",
+    "src": "src/client/pages/senders.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-CjjI-3eN.mjs"
+    ]
+  }
+}

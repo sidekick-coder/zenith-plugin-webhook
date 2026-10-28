@@ -1,0 +1,14 @@
+id: myplugin
+name: myplugin
+description: A plugin for zenith
+aliases:
+    - myplugin
+version_available_channels:
+    - branch:main
+    - branch:build
+build:
+    server:
+        entries:
+            "api/*": "src/server/api/**/*.ts"
+            "migrations/*": "src/server/migrations/**/*.ts"
+            "seeders/*": "src/server/seeders/**/*.ts"

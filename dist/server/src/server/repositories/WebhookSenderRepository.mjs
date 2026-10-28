@@ -1,0 +1,1 @@
+import e from"@sidekick-coder/zenith-kit/server/repositories/ConfigRepository";var t=class extends e{constructor(e){super(e,`webhook.senders`,`id`)}};export{t as WebhookSenderRepository};

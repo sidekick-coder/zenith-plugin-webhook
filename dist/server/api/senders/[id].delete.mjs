@@ -1,0 +1,1 @@
+import e from"../../src/server/facades/webhookSenderRepository.mjs";import{defineHandler as t}from"@sidekick-coder/zenith-kit/server";import{validator as n}from"@sidekick-coder/zenith-kit/shared";var r=t(async t=>{let r=n.validate(t.params.id,e=>e.string()),i=await e.findByIdOrFail(r);return t.acl.authorize(`delete`,`WebhookSender`,i),e.deleteById(r)});export{r as default};

@@ -1,0 +1,1 @@
+import{WebhookSenderRepository as e}from"../repositories/WebhookSenderRepository.mjs";import t from"@sidekick-coder/zenith-kit/server/facades/config";const n=new e(t);export{n as default};

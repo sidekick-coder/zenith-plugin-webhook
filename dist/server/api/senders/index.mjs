@@ -1,0 +1,1 @@
+import e from"../../src/server/facades/webhookSenderRepository.mjs";import{defineHandler as t}from"@sidekick-coder/zenith-kit/server";import{validator as n}from"@sidekick-coder/zenith-kit/shared";var r=t(async t=>{t.acl.authorize(`list`,`WebhookSender`);let r=n.validate(t.query,e=>e.extras.pagination.base());return e.paginate(r)});export{r as default};

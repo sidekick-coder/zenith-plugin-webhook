@@ -1,0 +1,1 @@
+import e from"../services/WebhookSenderManager.mjs";import{container as t}from"@sidekick-coder/zenith-kit/server";const n=t.proxy(e);export{n as default};

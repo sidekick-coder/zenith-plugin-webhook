@@ -1,0 +1,1 @@
+import"kysely";const e=`zenith_plugin_starter__todos`;async function t(t){await t.schema.createTable(e).addColumn(`id`,`integer`,e=>e.primaryKey().autoIncrement()).addColumn(`title`,`varchar(255)`).addColumn(`completed`,`boolean`).execute()}async function n(t){await t.schema.dropTable(e).execute()}export{n as down,t as up};

@@ -1,0 +1,17 @@
+{
+  "src/client/index.ts": {
+    "file": "index.mjs",
+    "name": "index",
+    "src": "src/client/index.ts",
+    "isEntry": true,
+    "dynamicImports": [
+      "src/client/pages/senders.vue"
+    ]
+  },
+  "src/client/pages/senders.vue": {
+    "file": "senders-BRxkbD9-.mjs",
+    "name": "senders",
+    "src": "src/client/pages/senders.vue",
+    "isDynamicEntry": true
+  }
+}
