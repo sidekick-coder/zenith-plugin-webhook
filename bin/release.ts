@@ -1,5 +1,5 @@
 import { execFile as execFileCallback } from 'node:child_process'
-import { cp, mkdtemp, readFile, rm, stat } from 'node:fs/promises'
+import { cp, mkdtemp, rm, stat } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { basename, dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -83,8 +83,7 @@ async function main() {
             await cp(join(artifactsDirectory, file), join(releaseWorktree, file))
         }
 
-        const packageJson = JSON.parse(await readFile(join(artifactsDirectory, 'package.json'), 'utf8')) as { version?: string }
-        const message = packageJson.version ? `release ${packageJson.version}` : 'release'
+        const message = (await run('git', ['rev-parse', '--abbrev-ref', 'HEAD'], repositoryRoot)).stdout.trim()
 
         await run('git', ['add', '-f', 'dist', ...releaseFiles], releaseWorktree)
         await run('git', ['commit', '--allow-empty', '-m', message], releaseWorktree)
