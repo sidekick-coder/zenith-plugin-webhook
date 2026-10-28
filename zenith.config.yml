@@ -1,11 +1,8 @@
-id: myplugin
-name: myplugin
-description: A plugin for zenith
-aliases:
-    - myplugin
-version_available_channels:
-    - branch:main
-    - branch:build
+id: 01M60FFP9HT5P8JBN1MK99WX3V
+name: webhooks
+description: add webhooks to your zenith app
+branches:
+    - release
 build:
     server:
         entries:
