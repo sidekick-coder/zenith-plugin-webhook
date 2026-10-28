@@ -1,0 +1,22 @@
+import { validator, type ValidateResult } from '@sidekick-coder/zenith-kit/shared'
+
+const v = validator.v
+
+export type WebhookSender = ValidateResult<typeof webhookSenderSchema>
+
+export const webhookSenderSchema = v.object({
+    id: v.string(),
+    name: v.string(),
+    enabled: v.boolean(),
+
+    trigger_events: v.array(v.string()),
+
+    request_url: v.string(),
+    request_method: v.optional(v.picklist(['GET', 'POST', 'PUT', 'DELETE'])),
+    request_headers: v.optional(v.record(v.string(), v.string())),
+    request_body: v.optional(v.union([v.string(), v.record(v.string(), v.any())])),
+})
+
+export const webhookSenderCreateSchema = v.omit(webhookSenderSchema, ['id', 'enabled'])
+
+export const webhookSenderUpdateSchema = v.partial(webhookSenderCreateSchema)

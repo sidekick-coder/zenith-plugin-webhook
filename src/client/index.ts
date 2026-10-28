@@ -3,26 +3,29 @@ import type { DefineComponent } from 'vue'
 import { definePlugin } from '@sidekick-coder/zenith-kit/shared'
 
 export default definePlugin(async () => {
-    const id = 'starter'
+    const id = 'webhook'
 
     lifecycle.on('load', async () => {
-        router.auto(import.meta.glob<DefineComponent>('./pages/admin/**/*.vue'), {
-            strip: ['pages', 'admin'],
+        router.auto(import.meta.glob<DefineComponent>('./pages/**/*.vue'), {
+            strip: ['pages'],
             prefix: `/admin/${id}`,
-            guards: [authGuard]
-        })
+            guards: [authGuard],
+            refine: (records) => records.map(record => {
+                record.meta = {
+                    layout: 'admin',
+                }
 
-        router.auto(import.meta.glob<DefineComponent>('./pages/public/**/*.vue'), {
-            strip: ['pages', 'public'],
-            prefix: id,
+                return record
+            })
+
         })
 
         menu.add({
-            label: 'Starter',
-            icon: 'lucide:box',
-            group: $t('Plugins'),
+            label: $t('Senders'),
+            icon: 'lucide:send',
+            group: $t('Webhook'),
             layout: 'admin',
-            to: `/admin/${id}`,
+            to: `/admin/${id}/senders`,
         })
     })
 })
