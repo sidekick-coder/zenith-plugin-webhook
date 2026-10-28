@@ -4,6 +4,7 @@ import { tmpdir } from 'node:os'
 import { basename, dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { promisify } from 'node:util'
+import { CliCommand } from '@sidekick-coder/zenith-kit/server/services/CliService'
 import { tryCatch } from '@sidekick-coder/zenith-kit/shared'
 
 const execFile = promisify(execFileCallback)
@@ -44,7 +45,7 @@ async function exists(path: string) {
     throw error
 }
 
-async function main() {
+async function main(message?: string) {
     const temporaryDirectory = await mkdtemp(join(tmpdir(), `${basename(repositoryRoot)}-release-`))
     const workingDirectory = join(temporaryDirectory, 'repository')
     const artifactsDirectory = join(temporaryDirectory, 'artifacts')
@@ -107,10 +108,10 @@ async function main() {
             ))
         }
 
-        const message = (await run('git', ['rev-parse', '--abbrev-ref', 'HEAD'], repositoryRoot)).stdout.trim()
+        const commitMessage = message || (await run('git', ['rev-parse', '--abbrev-ref', 'HEAD'], repositoryRoot)).stdout.trim()
 
         await run('git', ['add', '-f', 'dist', ...releaseFiles], releaseWorktree)
-        await run('git', ['commit', '--allow-empty', '-m', message], releaseWorktree)
+        await run('git', ['commit', '--allow-empty', '-m', commitMessage], releaseWorktree)
     })
 
     const [cleanupError] = await tryCatch(async () => {
@@ -130,7 +131,14 @@ async function main() {
     }
 }
 
-void tryCatch(main).then(([error]) => {
+const command = new CliCommand('release')
+
+command
+    .description('Build and commit release artifacts to the local release branch.')
+    .option('-m, --message <message>', 'Commit message for the release branch')
+    .action((options) => main(options.message))
+
+void tryCatch(() => command.parseAsync()).then(([error]) => {
     if (error) {
         console.error(error)
         process.exitCode = 1
